@@ -9,6 +9,10 @@ $(call inherit-product, device/common/gps/gps_us_supl.mk)
 # Overlays
 DEVICE_PACKAGE_OVERLAYS +=  device/samsung/logands/overlay
 
+PRODUCT_COPY_FILES += \
+    device/samsung/bcm-common/ramdisk/init.hawaii_ss_loganxx.rc:root/init.hawaii_ss_logands.rc \
+    device/samsung/bcm-common/ramdisk/ueventd.hawaii_ss_loganxx.rc:root/ueventd.hawaii_ss_logands.rc
+
 # common loganxx
 $(call inherit-product, device/samsung/bcm-common/loganxx.mk)
 
