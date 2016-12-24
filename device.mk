@@ -13,6 +13,9 @@ PRODUCT_COPY_FILES += \
     device/samsung/bcm-common/ramdisk/init.hawaii_ss_loganxx.rc:root/init.hawaii_ss_logands.rc \
     device/samsung/bcm-common/ramdisk/ueventd.hawaii_ss_loganxx.rc:root/ueventd.hawaii_ss_logands.rc
 
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.radio.multisim.config=dsds
+
 # common loganxx
 $(call inherit-product, device/samsung/bcm-common/loganxx.mk)
 
