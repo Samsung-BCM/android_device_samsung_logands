@@ -11,7 +11,8 @@ DEVICE_PACKAGE_OVERLAYS +=  device/samsung/logands/overlay
 
 PRODUCT_COPY_FILES += \
     device/samsung/bcm-common/ramdisk/init.hawaii_ss_loganxx.rc:root/init.hawaii_ss_logands.rc \
-    device/samsung/bcm-common/ramdisk/ueventd.hawaii_ss_loganxx.rc:root/ueventd.hawaii_ss_logands.rc
+    device/samsung/bcm-common/ramdisk/ueventd.hawaii_ss_loganxx.rc:root/ueventd.hawaii_ss_logands.rc \
+    device/samsung/logands/ramdisk/fstab.bcm2166x.rc:root/fstab.bcm2166x.rc
 
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.radio.multisim.config=dsds
