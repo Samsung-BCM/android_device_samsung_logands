@@ -10,9 +10,9 @@ $(call inherit-product, device/common/gps/gps_us_supl.mk)
 DEVICE_PACKAGE_OVERLAYS +=  device/samsung/logands/overlay
 
 PRODUCT_COPY_FILES += \
-    device/samsung/bcm-common/ramdisk/init.hawaii_ss_loganxx.rc:root/init.hawaii_ss_logands.rc \
-    device/samsung/bcm-common/ramdisk/ueventd.hawaii_ss_loganxx.rc:root/ueventd.hawaii_ss_logands.rc \
-    device/samsung/logands/ramdisk/fstab.bcm2166x.rc:root/fstab.bcm2166x.rc
+    device/samsung/logands/ramdisk/init.hawaii_ss_logands.rc:root/init.hawaii_ss_logands.rc \
+	device/samsung/bcm-common/ramdisk/fstab.hawaii_ss_loganxx:root/fstab.hawaii_ss_logands \
+    device/samsung/bcm-common/ramdisk/ueventd.hawaii_ss_loganxx.rc:root/ueventd.hawaii_ss_logands.rc
 
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.radio.multisim.config=dsds
