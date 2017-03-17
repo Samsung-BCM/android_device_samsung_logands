@@ -7,15 +7,15 @@ on early-init
 
 on init
     symlink /sdcard /mnt/sdcard
-    symlink /sdcard /storage/sdcard0
+    #symlink /sdcard /storage/sdcard0
 
     symlink /efs /factory
     symlink /dev/block/mmcblk0p11 /dev/block/param
 
 on post-fs-data
 # we will remap this as /storage/sdcard with the sdcard fuse tool
-    mkdir /data/media 0770 media_rw media_rw
-    chown media_rw media_rw /data/media
+    #mkdir /data/media 0770 media_rw media_rw
+    #chown media_rw media_rw /data/media
 
 # SA, System SW, SAMSUNG create log directory
     mkdir /data/log 0775 system log
