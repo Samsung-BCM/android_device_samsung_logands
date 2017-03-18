@@ -2,10 +2,11 @@ import init.bcm2166x.usb.rc
 import init.log.rc
 
 on early-init
-    write /sys/fs/selinux/enforce 0
     mkdir /efs 0771 radio system
+    mount debugfs /sys/kernel/debug /sys/kernel/debug mode=755
 
 on init
+    export LD_SHIM_LIBS "/system/lib/libwvm.so|libshim_wvm.so"
     symlink /sdcard /mnt/sdcard
     symlink /sdcard /storage/sdcard0
 
@@ -131,7 +132,6 @@ on boot
     setprop ro.product.device hawaii
     
     chown system system /sys/devices/platform/panel/backlight/panel/brightness
-    mount debugfs /sys/kernel/debug /sys/kernel/debug
 
 # WIFI
     setprop wifi.interface wlan0
@@ -507,6 +507,7 @@ on post-fs
         class main
         socket wpa_wlan0 dgram 660 wifi wifi
         disabled
+        group system wakelock
         oneshot
 
     service p2p_supplicant /system/bin/wpa_supplicant \
@@ -523,37 +524,7 @@ on post-fs
         class main
         socket wpa_wlan0 dgram 660 wifi wifi
         disabled
-        oneshot
-
-    service dhcpcd_wlan0 /system/bin/dhcpcd -ABKL
-        class main
-        disabled
-        oneshot
-
-    service dhcpcd_p2p /system/bin/dhcpcd -aABKL
-        class main
-        disabled
-         oneshot
-
-    service iprenew_wlan0 /system/bin/dhcpcd -n
-        class main
-        disabled
-        oneshot
-
-    service iprenew_p2p /system/bin/dhcpcd -n
-        class main
-        disabled
-        oneshot
-       
-# Bluetooth PAN
-    service dhcpcd_bt-pan /system/bin/dhcpcd -ABKL
-        class main
-        disabled
-        oneshot
-
-    service iprenew_bt-pan /system/bin/dhcpcd -n
-        class main
-        disabled
+        group system wakelock
         oneshot
  
 #for WiFi MFG(TestMode)
@@ -584,7 +555,7 @@ on property:init.svc.macloader=stopped
         setenv LD_PRELOAD /system/lib/libglgps-compat.so
         class late_start
         user gps
-        group system root inet radio wifi sdcard_rw
+        group system wakelock root inet radio wifi sdcard_rw
 
 # Run bkmgrd automatically on startup
     service bkmgrd /system/bin/bkmgrd
