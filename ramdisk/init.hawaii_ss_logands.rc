@@ -2,7 +2,6 @@ import init.bcm2166x.usb.rc
 import init.log.rc
 
 on early-init
-    write /sys/fs/selinux/enforce 0
     mkdir /efs 0771 radio system
 
 on init
