@@ -122,8 +122,8 @@ on post-fs-data
     chmod 0660 /sys/class/input/input2/odr
 
 on boot
-# SISO-ANDR_PERF :: START Changing scheduler to noop during boot
-    setprop sys.io.scheduler noop
+# SISO-ANDR_PERF :: START Changing scheduler to cfq during boot
+    setprop sys.io.scheduler cfq
 # SISO-ANDR_PERF :: END
 
     setprop ro.build.product hawaii
